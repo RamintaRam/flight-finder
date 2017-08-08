@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\User;
 use Illuminate\Console\Command;
+
 
 class AdminCreate extends Command
 {
@@ -11,14 +13,14 @@ class AdminCreate extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'make:admin';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Command to create Administrator';
 
     /**
      * Create a new command instance.
@@ -37,6 +39,17 @@ class AdminCreate extends Command
      */
     public function handle()
     {
-        //
+        $this->comment('Creating Administrator');
+
+        $record = User::create(
+            [
+                'name' => $name = $this->ask('Please provide admins name'),
+                'email'=> $email = $this->ask('Please provide admins email address'),
+                'password' => bcrypt($password = $this->secret('Please provide admin login password'))
+            ]);
+
+        User::create($record);
+        $this->comment('Administrator created!');
+
     }
 }
