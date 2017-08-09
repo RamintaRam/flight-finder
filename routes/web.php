@@ -31,14 +31,14 @@ Route::group(['prefix' => 'admin', 'middleware'=>['auth', 'check if logged in']]
 
     Route::group(['prefix' => 'airlines'], function () {
         Route::get('/', ['as' => 'app.airlines.index', 'uses' => 'FLYAirlinesController@index']);
-        Route::group(['prefix' => '{id}'], function () {
+      /*  Route::group(['prefix' => '{id}'], function () {*/
             Route::get('/create', ['as' => 'app.airlines.create', 'uses' => 'FLYAirlinesController@create']);
             Route::post('/create', ['as' => 'app.airlines.store', 'uses' => 'FLYAirlinesController@store']);
             Route::get('/edit', ['as' => 'app.airlines.edit', 'uses' => 'FLYAirlinesController@edit']);
             Route::post('/edit', ['as' => 'app.airlines.update', 'uses' => 'FLYAirlinesController@update']);
-            Route::get('/', ['as' => 'app.airlines.show', 'uses' => 'FLYAirlinesController@show']);
+//            Route::get('/', ['as' => 'app.airlines.show', 'uses' => 'FLYAirlinesController@show']);
             Route::delete('/', ['as' => 'app.airlines.delete', 'uses' => 'FLYAirlinesController@destroy']);
-        });
+//        });
     });
 
 

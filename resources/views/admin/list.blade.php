@@ -3,13 +3,11 @@
 
 @section('content')
 
-
-
     <div class="container">
         <div class="row">
             <h4>XXXXXXXX</h4>
             @if(isset($new))
-                <div><a class="btn btn-success btn-sm" href="{{--{{route($new)}}--}}#">{{trans('app.createNew')}}</a></div><br>
+                <div><a class="btn btn-success btn-sm" href="{{route($new)}}">{{trans('app.createNew')}}</a></div><br>
             @endif
 
             <div class="col-md-12">

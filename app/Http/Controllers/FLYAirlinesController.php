@@ -16,6 +16,7 @@ class FLYAirlinesController extends Controller
     {
         $config['list'] = FLYAirlines::get()->toArray();
         $config['new'] = 'app.airlines.create';
+//        $config['submit'] = 'app.airlines.create';
 
 
         return view('admin.list', $config);
@@ -29,8 +30,13 @@ class FLYAirlinesController extends Controller
      */
     public function create()
     {
+        $config = $this->getFormData();
+        $config['route'] = route('app.airlines.create');
+        $config['back'] = '/admin/airlines';
 
-        return view('admin.list');
+        return view('admin.create', $config);
+
+
     }
 
     /**
@@ -41,7 +47,15 @@ class FLYAirlinesController extends Controller
      */
     public function store()
     {
-        //
+
+        $data = request()->all();
+        FLYAirlines::create([
+            'name' => $data['name']
+        ]);
+
+        return redirect(route('app.airlines.edit'));
+
+
     }
 
     /**
@@ -65,7 +79,13 @@ class FLYAirlinesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $record = FLYAirlines::find($id)->toArray();
+        $config = $this->getFormData();
+        $config['route'] = route('app.airlines.edit', $id);
+        $config['record'] = $record;
+
+
+        return view('airlines.create', $config);
     }
 
     /**
@@ -90,6 +110,20 @@ class FLYAirlinesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function getFormData()
+    {
+        $config['fields'][] =
+            [
+                "type" => "singleLine",
+                "key" => "name",
+            ];
+
+
+
+        return $config;
     }
 
 }
