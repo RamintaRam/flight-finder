@@ -17,7 +17,7 @@ class CreateFlyAirportsTable extends Migration {
 			$table->string('id', 36)->unique('id_UNIQUE');
 			$table->integer('count', true);
 			$table->string('name');
-			$table->string('country_id', 36);
+			$table->string('country_id', 36)->index('fk_fly_airports_fly_countries_idx');
 			$table->string('city')->nullable();
 			$table->timestamps();
 			$table->softDeletes();

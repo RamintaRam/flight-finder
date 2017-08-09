@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\FLYCountries;
 use Illuminate\Routing\Controller;
 
 class FLYCountriesController extends Controller {
@@ -12,7 +13,11 @@ class FLYCountriesController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        $config['list'] = FLYCountries::get()->toArray();
+        $config['new'] = 'app.countries.create';
+
+
+        return view('admin.list', $config);
 	}
 
 	/**

@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\FLYAirports;
 use Illuminate\Routing\Controller;
 
 class FLYAirportsController extends Controller {
@@ -12,7 +13,11 @@ class FLYAirportsController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        $config['list'] = FLYAirports::get()->toArray();
+        $config['new'] = 'app.airport.create';
+
+
+        return view('admin.list', $config);
 	}
 
 	/**

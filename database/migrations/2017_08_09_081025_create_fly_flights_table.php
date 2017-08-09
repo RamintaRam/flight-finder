@@ -20,8 +20,9 @@ class CreateFlyFlightsTable extends Migration {
 			$table->timestamps();
 			$table->dateTime('departure')->nullable();
 			$table->dateTime('arival')->nullable();
-			$table->string('origin_id', 36)->nullable();
-			$table->string('destination_id', 36)->nullable();
+			$table->string('destination_id', 36)->nullable()->index('fk_fly_flights_fly_airports1_idx');
+			$table->string('airline_id', 36)->unique('airline_id_UNIQUE');
+			$table->string('origin_id', 36)->unique('origin_id_UNIQUE');
 		});
 	}
 
