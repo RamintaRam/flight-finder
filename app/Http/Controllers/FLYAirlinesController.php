@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\FLYAirlines;
 use Illuminate\Routing\Controller;
 
 class FLYAirlinesController extends Controller {
@@ -12,7 +13,11 @@ class FLYAirlinesController extends Controller {
 	 */
 	public function index()
 	{
-		//
+    $config['list'] = FLYAirlines->get()->toArray();
+
+
+
+	    return view('admin.list', $config);
 	}
 
 	/**
