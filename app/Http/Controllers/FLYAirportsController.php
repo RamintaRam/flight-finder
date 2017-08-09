@@ -14,7 +14,10 @@ class FLYAirportsController extends Controller {
 	public function index()
 	{
         $config['list'] = FLYAirports::get()->toArray();
-        $config['new'] = 'app.airport.create';
+        $config['new'] = 'app.airports.create';
+        $config['edit'] = 'app.airports.edit';
+        $config['delete'] = 'app.airports.delete';
+        $config['route'] = route('app.airports.create');
 
 
         return view('admin.list', $config);

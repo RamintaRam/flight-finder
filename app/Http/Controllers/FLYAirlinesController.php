@@ -16,7 +16,9 @@ class FLYAirlinesController extends Controller
     {
         $config['list'] = FLYAirlines::get()->toArray();
         $config['new'] = 'app.airlines.create';
-//        $config['submit'] = 'app.airlines.create';
+        $config['edit'] = 'app.airlines.edit';
+        $config['delete'] = 'app.airlines.delete';
+        $config['route'] = route('app.airlines.create');
 
 
         return view('admin.list', $config);
@@ -30,9 +32,9 @@ class FLYAirlinesController extends Controller
      */
     public function create()
     {
-        $config = $this->getFormData();
+        $config['form'] = 'Airline';
         $config['route'] = route('app.airlines.create');
-        $config['back'] = '/admin/airlines';
+        $config['back'] = route('app.airlines.index');
 
         return view('admin.create', $config);
 
@@ -53,7 +55,7 @@ class FLYAirlinesController extends Controller
             'name' => $data['name']
         ]);
 
-        return redirect(route('app.airlines.edit'));
+        return redirect(route('app.airlines.index'));
 
 
     }
@@ -79,13 +81,14 @@ class FLYAirlinesController extends Controller
      */
     public function edit($id)
     {
-        $record = FLYAirlines::find($id)->toArray();
-        $config = $this->getFormData();
+        $config['id'] = $id;
+        $config['form'] = $id;
+        $config['back'] = route('app.airlines.index');
+        $config['record'] = FLYAirlines::find($id)->toArray();
         $config['route'] = route('app.airlines.edit', $id);
-        $config['record'] = $record;
 
 
-        return view('airlines.create', $config);
+        return view('admin.create', $config);
     }
 
     /**
@@ -97,7 +100,13 @@ class FLYAirlinesController extends Controller
      */
     public function update($id)
     {
-        //
+        $config = FLYAirlines::find($id);
+        $data = request()->all();
+        $config->update([
+            'name' => $data['name']
+        ]);
+
+        return redirect(route('app.airlines.index'));
     }
 
     /**
@@ -109,21 +118,10 @@ class FLYAirlinesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        FLYAirlines::destroy($id);
+        return json_encode(["success" => true, "id" => $id]);
     }
 
 
-    public function getFormData()
-    {
-        $config['fields'][] =
-            [
-                "type" => "singleLine",
-                "key" => "name",
-            ];
-
-
-
-        return $config;
-    }
 
 }
