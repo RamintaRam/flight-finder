@@ -36,6 +36,7 @@ class FLYAirlinesController extends Controller
         $config['route'] = route('app.airlines.create');
         $config['back'] = route('app.airlines.index');
 
+
         return view('admin.create', $config);
 
 
@@ -51,9 +52,7 @@ class FLYAirlinesController extends Controller
     {
 
         $data = request()->all();
-        FLYAirlines::create([
-            'name' => $data['name']
-        ]);
+        FLYAirlines::create($data);
 
         return redirect(route('app.airlines.index'));
 
@@ -118,9 +117,11 @@ class FLYAirlinesController extends Controller
      */
     public function destroy($id)
     {
-        FLYAirlines::destroy($id);
+        if(FLYAirlines::destroy($id))
         return json_encode(["success" => true, "id" => $id]);
-    }
+
+        }
+
 
 
 

@@ -83,23 +83,28 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check if logged in'
 
 
 
-    Route::group(['prefix' => 'flights'], function () {
-        Route::get('/', ['as' => 'app.flights.index', 'uses' => 'FLYFlightsController@index']);
+    Route::group(['prefix' => 'flights'], function (){
+        Route::get('/',['as' => 'app.flights.index', 'uses' => 'FLYFlightsController@index']);
+        Route::get('/create', ['as' => 'app.flights.create', 'uses' => 'FLYFlightsController@create']);
+        Route::post('/create', [ 'uses' => 'FLYFlightsController@store']);
         Route::group(['prefix' => '{id}'], function () {
-            Route::get('/create', ['as' => 'app.flights.create', 'uses' => 'FLYFlightsController@create']);
-            Route::post('/create', ['as' => 'app.flights.store', 'uses' => 'FLYFlightsController@store']);
+//            Route::get('/',['as' => 'app.flights.show', 'uses' => 'FLYFlightsController@show']);
             Route::get('/edit', ['as' => 'app.flights.edit', 'uses' => 'FLYFlightsController@edit']);
-            Route::post('/edit', ['as' => 'app.flights.update', 'uses' => 'FLYFlightsController@update']);
-            Route::get('/', ['as' => 'app.flights.show', 'uses' => 'FLYFlightsController@show']);
-            Route::delete('/', ['as' => 'app.flights.delete', 'uses' => 'FLYFlightsController@destroy']);
+            Route::post('/edit', [  'uses' => 'FLYFlightsController@update']);
+            Route::delete('/delete', ['as' => 'app.flights.delete', 'uses' => 'FLYFlightsController@destroy']);
         });
     });
 
-
-    Route::group(['prefix' => 'countries'], function () {
-        Route::get('/', ['as' => 'app.countries.index', 'uses' => 'FLYCountriesController@index']);
-
-
+    Route::group(['prefix' => 'countries'], function (){
+        Route::get('/',['as' => 'app.countries.index', 'uses' => 'FLYCountriesController@index']);
+        Route::get('/create', ['as' => 'app.countries.create', 'uses' => 'FLYCountriesController@create']);
+        Route::post('/create', [ 'uses' => 'FLYCountriesController@store']);
+        Route::group(['prefix' => '{id}'], function () {
+//            Route::get('/',['as' => 'app.countries.show', 'uses' => 'FLYCountriesController@show']);
+            Route::get('/edit', ['as' => 'app.countries.edit', 'uses' => 'FLYCountriesController@edit']);
+            Route::post('/edit', [  'uses' => 'FLYCountriesController@update']);
+            Route::delete('/delete', ['as' => 'app.countries.delete', 'uses' => 'FLYCountriesController@destroy']);
+        });
     });
 
 });

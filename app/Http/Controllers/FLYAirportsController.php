@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\FLYAirports;
+use App\FLYCountries;
 use Illuminate\Routing\Controller;
 
 class FLYAirportsController extends Controller {
@@ -31,7 +32,13 @@ class FLYAirportsController extends Controller {
 	 */
 	public function create()
 	{
-		//
+
+        $config['form'] = 'Airport';
+        $config['route'] = route('app.airports.create');
+        $config['back'] = route('app.airports.index');
+        $config['country'] = FLYCountries::pluck('name', 'id')->toArray();
+
+        return view('admin.airport-create', $config);
 	}
 
 	/**
@@ -42,7 +49,10 @@ class FLYAirportsController extends Controller {
 	 */
 	public function store()
 	{
-		//
+        $data = request()->all();
+        FLYAirports::create($data);
+
+        return redirect(route('app.airports.index'));
 	}
 
 	/**
@@ -66,7 +76,15 @@ class FLYAirportsController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+        $config['id'] = $id;
+        $config['form'] = $id;
+        $config['back'] = route('app.airlines.index');
+        $config['record'] = FLYAirports::find($id)->toArray();
+        $config['route'] = route('app.airports.edit', $id);
+        $config['country'] = FLYCountries::pluck('name', 'id')->toArray();
+
+
+        return view('admin.airport-create', $config);
 	}
 
 	/**
@@ -78,7 +96,12 @@ class FLYAirportsController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+
+        $config = FLYAirports::find($id);
+        $data = request()->all();
+        $config->update($data);
+
+        return redirect(route('app.airports.index'));
 	}
 
 	/**
@@ -90,7 +113,8 @@ class FLYAirportsController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+        FLYAirports::destroy($id);
+        return json_encode(["success" => true, "id" => $id]);
 	}
 
 }

@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use App\FLYAirlines;
+use App\FLYCountries;
 use App\FLYFlights;
 use Illuminate\Routing\Controller;
 
@@ -15,6 +17,9 @@ class FLYFlightsController extends Controller {
 	{
         $config['list'] = FLYFlights::get()->toArray();
         $config['new'] = 'app.flights.create';
+        $config['edit'] = 'app.flights.edit';
+        $config['delete'] = 'app.flights.delete';
+        $config['route'] = route('app.flights.create');
 
 
         return view('admin.list', $config);
@@ -28,7 +33,16 @@ class FLYFlightsController extends Controller {
 	 */
 	public function create()
 	{
-		//
+        $config['form'] = 'Flight';
+        $config['route'] = route('app.flights.create');
+        $config['back'] = route('app.flights.index');
+        $config['destination'] = FLYCountries::pluck('name', 'id')->toArray();
+        $config['origin'] = FLYCountries::pluck('name', 'id')->toArray();
+        $config['airline'] = FLYAirlines::pluck('name', 'id')->toArray();
+//        $config['departure'] = FLYCountries::pluck('name', 'id')->toArray();
+//        $config['arival'] = FLYCountries::pluck('name', 'id')->toArray();
+
+        return view('admin.flight-create', $config);
 	}
 
 	/**
