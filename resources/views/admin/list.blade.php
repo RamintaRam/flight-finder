@@ -53,12 +53,12 @@
                                         </p>
                                     </td>
                                     <td>
-
-                                        <p data-placement="top" data-toggle="tooltip" title="Delete">
-                                            <button onclick="deleteItem( '{{ route($delete, $record['id']) }}' )" class="btn btn-danger btn-xs" data-title="Delete"
-                                                    data-toggle="modal" data-target="#delete"><span
-                                                        class="glyphicon glyphicon-trash"></span></button>
-                                        </p>
+                                    <td><a id="del" onclick="deleteItem('{{route($delete, $record['id'])}}')" class="btn btn-danger btn-sm" >Delete</a></td>
+                                        {{--<p data-placement="top" data-toggle="tooltip" title="Delete">--}}
+                                            {{--<button onclick="deleteItem( '{{ route($delete, $record['id']) }}' )" class="btn btn-danger btn-xs" data-title="Delete"--}}
+                                                    {{--data-toggle="modal" data-target="#delete"><span--}}
+                                                        {{--class="glyphicon glyphicon-trash"></span></button>--}}
+                                        {{--</p>--}}
                                     </td>
 
                                 </tr>
@@ -81,9 +81,33 @@
 
 @section('scripts')
 
+    {{--<script>--}}
+
+
+        {{--$.ajaxSetup({--}}
+            {{--headers: {--}}
+                {{--'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
+            {{--}--}}
+        {{--});--}}
+        {{--function deleteItem(route) {--}}
+            {{--$.ajax({--}}
+                {{--url: route,--}}
+                {{--type: 'DELETE',--}}
+                {{--dataType: 'json',--}}
+                {{--success: function (response) {--}}
+                    {{--$('#' + response.id).remove();--}}
+                {{--},--}}
+                {{--error: function () {--}}
+                    {{--alert('error')--}}
+                {{--}--}}
+            {{--});--}}
+        {{--}--}}
+
+
+    {{--</script>--}}
+
+
     <script>
-
-
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -92,18 +116,17 @@
         function deleteItem(route) {
             $.ajax({
                 url: route,
-                type: 'DELETE',
                 dataType: 'json',
-                success: function (response) {
-                    $('#' + response.id).remove();
+                type: 'DELETE',
+                success: function () {
+                    alert('DELETED');
+                    location.reload();
                 },
                 error: function () {
-                    alert('error')
+                    alert('ERROR');
                 }
             });
         }
-
-
     </script>
 
 

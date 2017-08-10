@@ -1,8 +1,10 @@
 <?php namespace App\Http\Controllers;
 
 use App\FLYAirlines;
+use App\FLYAirports;
 use App\FLYCountries;
 use App\FLYFlights;
+use Carbon\Carbon;
 use Illuminate\Routing\Controller;
 
 class FLYFlightsController extends Controller {
@@ -36,11 +38,12 @@ class FLYFlightsController extends Controller {
         $config['form'] = 'Flight';
         $config['route'] = route('app.flights.create');
         $config['back'] = route('app.flights.index');
-        $config['destination'] = FLYCountries::pluck('name', 'id')->toArray();
-        $config['origin'] = FLYCountries::pluck('name', 'id')->toArray();
+        $config['destination'] = FLYAirports::pluck('name', 'id')->toArray();
+        $config['origin'] = FLYAirports::pluck('name', 'id')->toArray();
         $config['airline'] = FLYAirlines::pluck('name', 'id')->toArray();
-//        $config['departure'] = FLYCountries::pluck('name', 'id')->toArray();
-//        $config['arival'] = FLYCountries::pluck('name', 'id')->toArray();
+        $config['departure'] =  Carbon::now('Europe/Vilnius');
+        $config['arival'] = Carbon::now('Europe/Vilnius')->addDays(7);
+
 
         return view('admin.flight-create', $config);
 	}
@@ -53,7 +56,16 @@ class FLYFlightsController extends Controller {
 	 */
 	public function store()
 	{
-		//
+        $data = request()->all();
+        FLYFlights::create([
+            'origin_id' => $data['origin_id'],
+            'destination_id' => $data['destination_id'],
+            'airline_id' => $data['airline_id'],
+            'departure' => $data['departure'],
+            'arival' => $data['arival'],
+        ]);
+
+        return redirect(route('app.flights.index'));
 	}
 
 	/**
@@ -77,7 +89,18 @@ class FLYFlightsController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+        $config['id'] = $id;
+        $config['form'] = $id;
+        $config['back'] = route('app.airlines.index');
+        $config['route'] = route('app.airports.edit', $id);
+        $config['record'] = FLYFlights::find($id)->toArray();
+        $config['destination'] = FLYAirports::pluck('name', 'id')->toArray();
+        $config['origin'] = FLYAirports::pluck('name', 'id')->toArray();
+        $config['airline'] = FLYAirlines::pluck('name', 'id')->toArray();
+        $config['departure'] =  Carbon::now('Europa/Vilnius');
+        $config['arival'] = Carbon::now('Europa/Vilnius')->addDays(7);
+
+        return view('admin.flight-create', $config);
 	}
 
 	/**
@@ -89,7 +112,11 @@ class FLYFlightsController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+        $config = FLYFlights::find($id);
+        $data = request()->all();
+        $config->update($data);
+
+        return redirect(route('app.flights.index'));
 	}
 
 	/**
@@ -101,7 +128,8 @@ class FLYFlightsController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+        FLYFlights::destroy($id);
+        return json_encode(["success" => true, "id" => $id]);
 	}
 
 }

@@ -4,12 +4,12 @@
 
     {!! Form::open(['url' => $route]) !!}
     @if(isset($record['id']))
-        <div><h1>{{$record['name']}}</h1></div>
+        <div><h1>{{$record['id']}}</h1></div>
         <div class="form-group">
             {{Form::label('departure', 'Departure')}}
-            {{Form::text('departure', $record['departure'])}}
+            {{Form::text('departure', $departure, $record['departure'])}}
             {{Form::label('arival', 'Arival')}}
-            {{Form::text('arival', $record['arival'])}}
+            {{Form::text('arival', $arival, $record['arival'])}}
             {{Form::label('airline_id', 'Airline')}}
             {{Form::select('airline_id', $airline, $record['airline_id'])}}
             {{Form::label('destination_id', 'Destination')}}
@@ -23,9 +23,9 @@
         <div>{{$form}}</div>
         <div class="form-group">
             {{Form::label('departure', 'Departure')}}
-            {{Form::text('departure')}}
+            {{Form::text('departure', $departure)}}
             {{Form::label('arival', 'Arival')}}
-            {{Form::text('arival')}}
+            {{Form::text('arival', $arival)}}
             {{Form::label('airline_id', 'Airline')}}
             {{Form::select('airline_id', $airline)}}
             {{Form::label('destination_id', 'Destination')}}
@@ -38,3 +38,8 @@
     @endif
 
 @endsection
+
+@section('scripts')
+
+
+    @endsection

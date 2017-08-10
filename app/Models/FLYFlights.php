@@ -9,5 +9,5 @@ class FLYFlights extends CoreModel
 {
     protected $table = 'fly_flights';
 
-    protected $fillable = ['id', 'departure', 'arival', 'origin_id', 'destination_id'];
+    protected $fillable = ['id', 'departure', 'arival', 'origin_id', 'destination_id', 'airline_id'];
 }
