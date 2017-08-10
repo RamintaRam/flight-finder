@@ -333,6 +333,9 @@ class ComposerStaticInit05350a326380e29219da3cf978dc592e
     );
 
     public static $classMap = array (
+        'AddForeignKeysToFlyAirportsTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_09_081027_add_foreign_keys_to_fly_airports_table.php',
+        'AddForeignKeysToFlyFlightsTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_09_081027_add_foreign_keys_to_fly_flights_table.php',
+        'AirlinesSeeder' => __DIR__ . '/../..' . '/database/seeds/AirlinesSeeder.php',
         'App\\Console\\Commands\\AdminCreate' => __DIR__ . '/../..' . '/app/Console/Commands/AdminCreate.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -407,10 +410,10 @@ class ComposerStaticInit05350a326380e29219da3cf978dc592e
         'Collective\\Html\\HtmlFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlFacade.php',
         'Collective\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlServiceProvider.php',
         'CountriesSeeder' => __DIR__ . '/../..' . '/database/seeds/CountriesSeeder.php',
-        'CreateFlyAirlinesTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_08_074522_create_fly_airlines_table.php',
-        'CreateFlyAirportsTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_08_074522_create_fly_airports_table.php',
-        'CreateFlyCountriesTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_08_074522_create_fly_countries_table.php',
-        'CreateFlyFlightsTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_08_074522_create_fly_flights_table.php',
+        'CreateFlyAirlinesTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_09_081025_create_fly_airlines_table.php',
+        'CreateFlyAirportsTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_09_081025_create_fly_airports_table.php',
+        'CreateFlyCountriesTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_09_081025_create_fly_countries_table.php',
+        'CreateFlyFlightsTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_09_081025_create_fly_flights_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/AbstractField.php',

@@ -6,6 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddForeignKeysToFlyAirportsTable' => $baseDir . '/database/migrations/2017_08_09_081027_add_foreign_keys_to_fly_airports_table.php',
+    'AddForeignKeysToFlyFlightsTable' => $baseDir . '/database/migrations/2017_08_09_081027_add_foreign_keys_to_fly_flights_table.php',
+    'AirlinesSeeder' => $baseDir . '/database/seeds/AirlinesSeeder.php',
     'App\\Console\\Commands\\AdminCreate' => $baseDir . '/app/Console/Commands/AdminCreate.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
@@ -80,10 +83,10 @@ return array(
     'Collective\\Html\\HtmlFacade' => $vendorDir . '/laravelcollective/html/src/HtmlFacade.php',
     'Collective\\Html\\HtmlServiceProvider' => $vendorDir . '/laravelcollective/html/src/HtmlServiceProvider.php',
     'CountriesSeeder' => $baseDir . '/database/seeds/CountriesSeeder.php',
-    'CreateFlyAirlinesTable' => $baseDir . '/database/migrations/2017_08_08_074522_create_fly_airlines_table.php',
-    'CreateFlyAirportsTable' => $baseDir . '/database/migrations/2017_08_08_074522_create_fly_airports_table.php',
-    'CreateFlyCountriesTable' => $baseDir . '/database/migrations/2017_08_08_074522_create_fly_countries_table.php',
-    'CreateFlyFlightsTable' => $baseDir . '/database/migrations/2017_08_08_074522_create_fly_flights_table.php',
+    'CreateFlyAirlinesTable' => $baseDir . '/database/migrations/2017_08_09_081025_create_fly_airlines_table.php',
+    'CreateFlyAirportsTable' => $baseDir . '/database/migrations/2017_08_09_081025_create_fly_airports_table.php',
+    'CreateFlyCountriesTable' => $baseDir . '/database/migrations/2017_08_09_081025_create_fly_countries_table.php',
+    'CreateFlyFlightsTable' => $baseDir . '/database/migrations/2017_08_09_081025_create_fly_flights_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'Cron\\AbstractField' => $vendorDir . '/mtdowling/cron-expression/src/Cron/AbstractField.php',
