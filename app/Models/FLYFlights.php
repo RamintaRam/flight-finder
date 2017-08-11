@@ -10,4 +10,6 @@ class FLYFlights extends CoreModel
     protected $table = 'fly_flights';
 
     protected $fillable = ['id', 'departure', 'arival', 'origin_id', 'destination_id', 'airline_id'];
+
+    protected $hidden = ['created_at', 'deleted_at', 'count', 'updated_at'];
 }

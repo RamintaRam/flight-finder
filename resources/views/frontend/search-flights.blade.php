@@ -20,27 +20,30 @@
 
 
 <div class="list">
-    @if(isset ($flights))
+    @if(sizeof ($flights)>0)
         <table id="mytable" class="table table-bordred table-striped">
             <thead>
             <tr>
-            @foreach($flights[0] as $key => $value)
-               <th>{{$key}}</th>
-            @endforeach
+
+                @foreach($flights[0] as $key => $value)
+                    <th>{{$key}}</th>
+                @endforeach
             </tr>
             </thead>
             <tbody>
+
             @foreach($flights as $key => $record)
                 <tr>
-                @foreach($record as $key => $value)
-                    <td>{{$value}}</td>
-                @endforeach
+                    @foreach($record as $key => $value)
+                        <td>{{$value}}</td>
+                    @endforeach
                 </tr>
             @endforeach
 
             </tbody>
         </table>
-
+@else
+        <p>NO</p>
     @endif
 
 
