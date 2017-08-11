@@ -10,10 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+////
+//Route::get('/', function () {
+//    return view('frontend.search-flights');
+//});
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/search',['as' => 'app.search.index', 'uses' => 'SearchFlightController@index']);
+
+//
+//return;
 
 Auth::routes();
 
