@@ -51,7 +51,7 @@ class FakeDataCreate extends Command
     public function handle()
     {
         $faker = Factory::create();
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 1; $i++) {
             $airport_id = null;
             while (!$airport_id)
             {
@@ -68,7 +68,7 @@ class FakeDataCreate extends Command
         }
 
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 1; $i++) {
             $airline_id = null;
             while (!$airline_id)
             {
