@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Auth::routes();
 
 Route::get('/search', ['as' => 'app.search.index', 'uses' => 'SearchFlightController@index']);
 
@@ -31,7 +31,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //    return view('create');
 //});
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check if logged in']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'auth']], function () {
     Route::get('/', ['as' => 'app.flights.index', 'uses' => 'FLYCountriesController@index']);
 
 

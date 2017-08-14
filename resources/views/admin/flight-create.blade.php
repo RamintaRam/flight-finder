@@ -1,5 +1,5 @@
 @extends('admin.core')
-
+{{--@include('admin.menu')--}}
 @section('content')
 
     {!! Form::open(['url' => $route]) !!}
