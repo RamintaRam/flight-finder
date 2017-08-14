@@ -16,6 +16,7 @@ class FLYAirportsController extends Controller {
 	{
         $config['list'] = FLYAirports::get()->toArray();
         $config['new'] = 'app.airports.create';
+        $config ['title'] = 'Airports';
         $config['edit'] = 'app.airports.edit';
         $config['delete'] = 'app.airports.delete';
         $config['route'] = route('app.airports.create');

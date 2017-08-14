@@ -20,6 +20,7 @@ class FLYFlightsController extends Controller {
         $config['list'] = FLYFlights::get()->toArray();
         $config['new'] = 'app.flights.create';
         $config['edit'] = 'app.flights.edit';
+        $config ['title'] = 'Flights';
         $config['delete'] = 'app.flights.delete';
         $config['route'] = route('app.flights.create');
 

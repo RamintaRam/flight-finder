@@ -20,7 +20,7 @@
 
 
 <div class="list">
-    @if(sizeof ($flights)>0)
+    @if(isset($flights))
         <table id="mytable" class="table table-bordred table-striped">
             <thead>
             <tr>

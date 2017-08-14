@@ -16,6 +16,7 @@ class FLYCountriesController extends Controller {
         $config['list'] = FLYCountries::get()->toArray();
         $config['new'] = 'app.countries.create';
         $config['edit'] = 'app.countries.edit';
+        $config ['title'] = 'Countries';
         $config['delete'] = 'app.countries.delete';
         $config['route'] = route('app.countries.create');
 

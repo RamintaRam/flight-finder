@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-use App\FLYAirlines;
+
 use App\FLYAirports;
 use App\FLYFlights;
 use Carbon\Carbon;
@@ -20,7 +20,7 @@ class SearchFlightController extends Controller {
         $config['origin'] = FLYAirports::pluck('name', 'id')->toArray();
         $config['date'] = Carbon::now('Europe/Vilnius');
         $config['route'] = route('app.search.index');
-//$config['flights'] = $this->getFlights();
+
         $data = request()->all();
 //dd($data);
         if($data) {
@@ -116,8 +116,8 @@ class SearchFlightController extends Controller {
             $date = $data['departure'];
 
 
-            $config['flights'] = FLYFlights::where('origin_id', /*'=',*/ $from)
-                ->where('destination_id',/*'=',*/ $to)
+            $config['flights'] = FLYFlights::where('origin_id',  $from)
+                ->where('destination_id', $to)
                 ->where('departure', '>=', $date)
                 ->where('departure', '<=', $date . '23.59.59')
                 ->get()->toArray();

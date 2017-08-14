@@ -16,6 +16,7 @@ class FLYAirlinesController extends Controller
     {
         $config['list'] = FLYAirlines::get()->toArray();
         $config['new'] = 'app.airlines.create';
+        $config ['title'] = 'Airlines';
         $config['edit'] = 'app.airlines.edit';
         $config['delete'] = 'app.airlines.delete';
         $config['route'] = route('app.airlines.create');

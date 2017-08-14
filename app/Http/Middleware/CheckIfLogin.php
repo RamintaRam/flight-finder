@@ -16,11 +16,13 @@ class CheckIfLogin
     public function handle($request, Closure $next)
     {
 
-        if( auth()->user())
+        if( auth()->user()) {
             return $next($request);
+        } else {
 
-
-        return redirect('home');
+//        return redirect('login');
 //        return $next($request);
+            return redirect('login');
+        }
     }
 }

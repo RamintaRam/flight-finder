@@ -10,10 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-////
-//Route::get('/', function () {
-//    return view('frontend.search-flights');
-//});
+//
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
 
 Route::get('/search', ['as' => 'app.search.index', 'uses' => 'SearchFlightController@index']);
 
@@ -30,9 +32,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 //});
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check if logged in']], function () {
-//    Route::get('/', function () {
-//        return view('admin.welcome_admin');
-//    });
+    Route::get('/', ['as' => 'app.flights.index', 'uses' => 'FLYCountriesController@index']);
+
 
 
     Route::group(['prefix' => 'airlines'], function () {
