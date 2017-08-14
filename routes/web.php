@@ -11,13 +11,13 @@
 |
 */
 //
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Auth::routes();
 
-Route::get('/search', ['as' => 'app.search.index', 'uses' => 'SearchFlightController@index']);
+Route::get('/', ['as' => 'app.search.index', 'uses' => 'SearchFlightController@index']);
 
 //
 //return;
