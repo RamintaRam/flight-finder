@@ -11,5 +11,13 @@ class FLYFlights extends CoreModel
 
     protected $fillable = ['id', 'departure', 'arival', 'origin_id', 'destination_id', 'airline_id'];
 
-    protected $hidden = ['created_at', 'deleted_at', 'count', 'updated_at'];
+    protected $with = ['airline'];
+
+    protected $hidden = ['id','created_at', 'deleted_at', 'count', 'updated_at', 'airline_id'];
+
+
+    public function airline()
+    {
+        return $this->hasOne(FLYAirlines::class, 'id', 'airline_id');
+    }
 }

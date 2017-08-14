@@ -18,16 +18,16 @@ class SearchFlightController extends Controller {
 	{
         $config['destination'] = FLYAirports::pluck('name', 'id')->toArray();
         $config['origin'] = FLYAirports::pluck('name', 'id')->toArray();
-//        $config['list'] = FLYFlights::get()->toArray();
         $config['date'] = Carbon::now('Europe/Vilnius');
         $config['route'] = route('app.search.index');
-
+//$config['flights'] = $this->getFlights();
         $data = request()->all();
-
+//dd($data);
         if($data) {
             $config['flights'] = $this->getFlights($data);
+//            dd($data);
         }
-
+//
 
         return view('frontend.search-flights', $config);
 
@@ -105,25 +105,27 @@ class SearchFlightController extends Controller {
 	}
 
 
-    public function getFlights(){
-	    $data = request()->all();
-//	    dd($data);
-	    $from = $data['origin_id'];
-	    $to = $data['destination_id'];
-	    $date = $data['departure'];
+    public function getFlights()
+    {
+        $data = request()->all();
+        if (sizeof($data) == 0) {
+//            dd($data);
+        } else {
+            $from = $data['origin_id'];
+            $to = $data['destination_id'];
+            $date = $data['departure'];
 
 
-
-        return FLYFlights::where('origin_id', $from)
-            ->where('destination_id', $to)
-            ->where('departure', '>=', $date)
-            ->where('departure', '<=', $date . '23.59.59')
-            ->get()->toArray();
+            $config['flights'] = FLYFlights::where('origin_id', /*'=',*/ $from)
+                ->where('destination_id',/*'=',*/ $to)
+                ->where('departure', '>=', $date)
+                ->where('departure', '<=', $date . '23.59.59')
+                ->get()->toArray();
 //dd($config);
 
+            return $config['flights'];
 
+        }
 
     }
-
-
 }

@@ -26,26 +26,40 @@
             <tr>
 
                 @foreach($flights[0] as $key => $value)
-                    <th>{{$key}}</th>
+                    @if(substr($key, -3) == '_id')
+                    <th>{{ucfirst(substr($key, 0, -3))}}</th>
+                    @else
+                      <th> {{ucfirst($key)}}</th>
+                    @endif
                 @endforeach
             </tr>
             </thead>
             <tbody>
+            <tr>
+                @foreach($flights as $flight)
+                    @foreach($flight as $key => $value)
+                        @if($key == 'airline')
+                            @foreach($value as $key => $title)
+                                @if($key == 'name')
 
-            @foreach($flights as $key => $record)
-                <tr>
-                    @foreach($record as $key => $value)
-                        <td>{{$value}}</td>
+                                    {{--@foreach($record as $key => $value)--}}
+                                    <td>{{$title}}</td>
+                                @endif
+                            @endforeach
+
+                            {{--@endforeach--}}
+
+                        @else
+                            <td>{{$value}}</td>
+                        @endif
                     @endforeach
-                </tr>
+            </tr>
             @endforeach
-
             </tbody>
         </table>
-@else
-        <p>NO</p>
+        @else
+        <div class="no-data"></div><p>Sorry, no matching flights found </p></div>
     @endif
 
 
 </div>
-
