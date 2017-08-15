@@ -13,7 +13,7 @@ class FLYFlights extends CoreModel
 
     protected $with = ['airline'];
 
-    protected $hidden = ['id','created_at', 'deleted_at', 'count', 'updated_at', 'airline_id'];
+    protected $hidden = ['created_at', 'deleted_at', 'count', 'updated_at', 'airline_id'];
 
 
     public function airline()
