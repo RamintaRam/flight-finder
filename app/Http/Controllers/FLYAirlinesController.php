@@ -52,8 +52,8 @@ class FLYAirlinesController extends Controller
     public function store()
     {
 
-        $data = request()->all();
-        FLYAirlines::create($data);
+//        $data = request()->all();
+//        FLYAirlines::create($data);
 
         return redirect(route('app.airlines.index'));
 

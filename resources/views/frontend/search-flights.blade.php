@@ -20,16 +20,16 @@
 
 
 <div class="list">
-    @if(isset($flights))
+    @if(($flights)>0)
         <table id="mytable" class="table table-bordred table-striped">
             <thead>
             <tr>
 
                 @foreach($flights[0] as $key => $value)
                     @if(substr($key, -3) == '_id')
-                    <th>{{ucfirst(substr($key, 0, -3))}}</th>
+                        <th>{{ucfirst(substr($key, 0, -3))}}</th>
                     @else
-                      <th> {{ucfirst($key)}}</th>
+                        <th> {{ucfirst($key)}}</th>
                     @endif
                 @endforeach
             </tr>
@@ -57,9 +57,9 @@
             @endforeach
             </tbody>
         </table>
-        @else
+    @else
         <div class="no-data"></div><p>Sorry, no matching flights found </p></div>
-    @endif
+@endif
 
 
 </div>
